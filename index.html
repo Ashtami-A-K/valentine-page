@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Valentine Proposal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background-color: #ffe6f0;
@@ -11,17 +12,26 @@
       overflow-y: auto;
       position: relative;
       min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     h1 {
       color: #cc0052;
-      font-size: 22px;
+      font-size: 6vw; /* scales with screen width */
+      margin: 10px 0;
     }
+
     h2 {
       color: #cc0052;
-      font-size: 18px;
+      font-size: 4.5vw; /* scales with screen width */
+      margin: 5px 0;
     }
+
     button {
-      font-size: 16px;
+      font-size: 4vw;
       padding: 8px 16px;
       background-color: #ff4d88;
       color: white;
@@ -30,10 +40,14 @@
       cursor: pointer;
       margin-top: 15px;
     }
+
     img {
-      width: 200px;
+      max-width: 90%;
+      height: auto;
       border-radius: 8px;
+      margin: 10px 0;
     }
+
     .falling-flower {
       position: absolute;
       animation: fall 3s linear infinite;
@@ -43,29 +57,27 @@
       100% { top: 100%; opacity: 0; }
     }
 
-    /* Floating hearts animation */
     .floating-heart {
       position: absolute;
-      animation: rise 5s linear infinite;
+      animation: rise 6s linear forwards;
     }
     @keyframes rise {
-      0% { bottom: 0; opacity: 1; }
+      0% { bottom: -50px; opacity: 1; }
       100% { bottom: 100%; opacity: 0; }
     }
 
-    /* Centered Animated Love Message */
     #loveMessage {
       display: none;
-      position: fixed; /* stays in center of screen */
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       color: #ff0066;
-      font-size: 60px;
+      font-size: 10vw; /* scales with screen width */
       text-align: center;
       text-shadow: 0 0 10px #eb6fad, 0 0 20px #d5a2bc, 0 0 30px #ff99cc;
       animation: pulseGlow 2s infinite, sparkle 3s infinite;
-      z-index: 999; /* ensures it stays above flowers/hearts */
+      z-index: 999;
     }
     @keyframes pulseGlow {
       0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
@@ -76,6 +88,15 @@
       0% { text-shadow: 0 0 10px #ff3399, 0 0 20px #ff66b2; }
       50% { text-shadow: 0 0 20px #ff66b2, 0 0 40px #ff99cc; }
       100% { text-shadow: 0 0 10px #ff3399, 0 0 20px #ff66b2; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      h1 { font-size: 9vw; }
+      h2 { font-size: 6vw; }
+      button { font-size: 6vw; }
+      #loveMessage { font-size: 12vw; }
+      .falling-flower, .floating-heart { font-size: 24px; }
     }
   </style>
 </head>
@@ -98,82 +119,39 @@
   <!-- Big Animated Love Message -->
   <div id="loveMessage">LOVE YOU ❤️😘🫂</div>
 
- <style>
-  /* Floating hearts animation */
-  .floating-heart {
-    position: absolute;
-    animation: rise 6s linear forwards;
-  }
-  @keyframes rise {
-    0% { bottom: 0; opacity: 1; }
-    100% { bottom: 100%; opacity: 0; }
-  }
-</style>
+  <script>
+    function showKiss() {
+      document.getElementById("valentineImage").src = "kiss_scene.png";
+      document.getElementById("valentineImage").alt = "Girl kissing boy";
 
-<style>
-  /* Floating hearts animation */
-  .floating-heart {
-    position: absolute;
-    animation: rise 6s linear forwards;
-  }
-  @keyframes rise {
-    0% { bottom: 0; opacity: 1; }
-    100% { bottom: 100%; opacity: 0; }
-  }
-</style>
+      let music = document.getElementById("bgMusic");
+      music.muted = false;
+      music.play();
 
-<style>
-  /* Floating hearts animation */
-  .floating-heart {
-    position: absolute;
-    animation: rise 6s linear forwards;
-  }
-  @keyframes rise {
-    0% { bottom: -50px; opacity: 1; }
-    100% { bottom: 100%; opacity: 0; }
-  }
-</style>
+      document.getElementById("loveMessage").style.display = "block";
 
-<script>
-  function showKiss() {
-    // Change the image to kiss scene
-    document.getElementById("valentineImage").src = "kiss_scene.png";
-    document.getElementById("valentineImage").alt = "Girl kissing boy";
+      setInterval(() => {
+        let flower = document.createElement("div");
+        flower.className = "falling-flower";
+        flower.innerHTML = "🌸";
+        flower.style.left = Math.random() * window.innerWidth + "px";
+        flower.style.fontSize = (Math.random() * 15 + 15) + "px";
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 4000);
+      }, 300);
 
-    // Unmute and play background music
-    let music = document.getElementById("bgMusic");
-    music.muted = false;
-    music.play();
-
-    // Show animated Love You message
-    document.getElementById("loveMessage").style.display = "block";
-
-    // Falling flowers (continuous)
-    setInterval(() => {
-      let flower = document.createElement("div");
-      flower.className = "falling-flower";
-      flower.innerHTML = "🌸";
-      flower.style.left = Math.random() * window.innerWidth + "px";
-      flower.style.fontSize = (Math.random() * 15 + 15) + "px";
-      document.body.appendChild(flower);
-      setTimeout(() => flower.remove(), 4000); // each flower lasts 4s
-    }, 300); // new flower every 0.3s
-
-    // Floating hearts (continuous)
-    setInterval(() => {
-      let heart = document.createElement("div");
-      heart.className = "floating-heart";
-      heart.innerHTML = ["❤️","💖","💘","💝"][Math.floor(Math.random()*4)];
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.bottom = "0px";
-      heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000); // each heart lasts 6s
-    }, 400); // new heart every 0.4s
-  }
-</script>
-
+      setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = ["❤️","💖","💘","💝"][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }, 400);
+    }
+  </script>
 
 </body>
 </html>
-
