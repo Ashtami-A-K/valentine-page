@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Valentine Proposal</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding-top: 30px;
+      overflow-y: auto;
+      position: relative;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #cc0052;
+      font-size: 22px;
+    }
+    h2 {
+      color: #cc0052;
+      font-size: 18px;
+    }
+    button {
+      font-size: 16px;
+      padding: 8px 16px;
+      background-color: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    img {
+      width: 200px;
+      border-radius: 8px;
+    }
+    .falling-flower {
+      position: absolute;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      0% { top: -50px; opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* Floating hearts animation */
+    .floating-heart {
+      position: absolute;
+      animation: rise 5s linear infinite;
+    }
+    @keyframes rise {
+      0% { bottom: 0; opacity: 1; }
+      100% { bottom: 100%; opacity: 0; }
+    }
+
+    /* Centered Animated Love Message */
+    #loveMessage {
+      display: none;
+      position: fixed; /* stays in center of screen */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff0066;
+      font-size: 60px;
+      text-align: center;
+      text-shadow: 0 0 10px #eb6fad, 0 0 20px #d5a2bc, 0 0 30px #ff99cc;
+      animation: pulseGlow 2s infinite, sparkle 3s infinite;
+      z-index: 999; /* ensures it stays above flowers/hearts */
+    }
+    @keyframes pulseGlow {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    }
+    @keyframes sparkle {
+      0% { text-shadow: 0 0 10px #ff3399, 0 0 20px #ff66b2; }
+      50% { text-shadow: 0 0 20px #ff66b2, 0 0 40px #ff99cc; }
+      100% { text-shadow: 0 0 10px #ff3399, 0 0 20px #ff66b2; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" autoplay loop muted>
+    <source src="romantic.mp3" type="audio/mpeg">
+  </audio>
+
+  <h2>I'm sorry for not attending your call..sothee❤️....😘😘🫂🫂</h2>
+  <h2>Nte sothan❤️...😘😘😘😘😘😘🫂🫂</h2>
+  <h1>Will you be my Valentine? ❤️</h1>
+
+  <!-- Image that changes -->
+  <img id="valentineImage" src="rose_scene.png" alt="Girl with rose in front">
+  <br>
+  <button onclick="showKiss()">Yes</button>
+
+  <!-- Big Animated Love Message -->
+  <div id="loveMessage">LOVE YOU ❤️😘🫂</div>
+
+ <style>
+  /* Floating hearts animation */
+  .floating-heart {
+    position: absolute;
+    animation: rise 6s linear forwards;
+  }
+  @keyframes rise {
+    0% { bottom: 0; opacity: 1; }
+    100% { bottom: 100%; opacity: 0; }
+  }
+</style>
+
+<style>
+  /* Floating hearts animation */
+  .floating-heart {
+    position: absolute;
+    animation: rise 6s linear forwards;
+  }
+  @keyframes rise {
+    0% { bottom: 0; opacity: 1; }
+    100% { bottom: 100%; opacity: 0; }
+  }
+</style>
+
+<style>
+  /* Floating hearts animation */
+  .floating-heart {
+    position: absolute;
+    animation: rise 6s linear forwards;
+  }
+  @keyframes rise {
+    0% { bottom: -50px; opacity: 1; }
+    100% { bottom: 100%; opacity: 0; }
+  }
+</style>
+
+<script>
+  function showKiss() {
+    // Change the image to kiss scene
+    document.getElementById("valentineImage").src = "kiss_scene.png";
+    document.getElementById("valentineImage").alt = "Girl kissing boy";
+
+    // Unmute and play background music
+    let music = document.getElementById("bgMusic");
+    music.muted = false;
+    music.play();
+
+    // Show animated Love You message
+    document.getElementById("loveMessage").style.display = "block";
+
+    // Falling flowers (continuous)
+    setInterval(() => {
+      let flower = document.createElement("div");
+      flower.className = "falling-flower";
+      flower.innerHTML = "🌸";
+      flower.style.left = Math.random() * window.innerWidth + "px";
+      flower.style.fontSize = (Math.random() * 15 + 15) + "px";
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 4000); // each flower lasts 4s
+    }, 300); // new flower every 0.3s
+
+    // Floating hearts (continuous)
+    setInterval(() => {
+      let heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.innerHTML = ["❤️","💖","💘","💝"][Math.floor(Math.random()*4)];
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.bottom = "0px";
+      heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000); // each heart lasts 6s
+    }, 400); // new heart every 0.4s
+  }
+</script>
+
+
+</body>
+</html>
